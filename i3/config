@@ -183,27 +183,61 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+# target                 title     bg    text   indicator  border
+client.focused           $lavender $base $text  $rosewater $lavender
+client.focused_inactive  $overlay0 $base $text  $rosewater $overlay0
+client.unfocused         $overlay0 $base $text  $rosewater $overlay0
+client.urgent            $peach    $base $peach $overlay0  $peach
+client.placeholder       $overlay0 $base $text  $overlay0  $overlay0
+client.background        $base
+
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
-  status_command i3status
-  colors {
-    background #1e1e2e
-    statusline #cdd6f4
-    separator  #45475a
+    status_command i3status
+    colors {
+        background         $base
+        statusline         $text
+        focused_statusline $text
 
-    focused_workspace  #89b4fa #89b4fa #1e1e2e
-    active_workspace   #313244 #313244 #cdd6f4
-    inactive_workspace #1e1e2e #1e1e2e #a6adc8
-    urgent_workspace   #f38ba8 #f38ba8 #1e1e2e
-    binding_mode       #f9e2af #f9e2af #1e1e2e
-  }
+        # target           border bg        text
+        focused_workspace  $base  $lavender $crust
+        active_workspace   $base  $surface2 $text
+        inactive_workspace $base  $base     $text
+        urgent_workspace   $base  $red      $crust
+    }
 }
 
 include ~/.config/i3/wallpaper.conf
 
 exec --no-startup-id picom
-# exec --no-startup-id openrgb --profile "standardica"
 exec --no-startup-id xsettingsd
 exec --no-startup-id setxkbmap -layout us,rs -option grp:alt_shift_toggle
 exec --no-startup-id gxkb
@@ -214,12 +248,6 @@ focus_follows_mouse no
 
 default_border pixel 2
 default_floating_border pixel 2
-
-client.focused          #89b4fa #1e1e2e #cdd6f4 #89b4fa #89b4fa
-client.unfocused        #313244 #1e1e2e #a6adc8 #313244 #313244
-client.focused_inactive #45475a #1e1e2e #a6adc8 #45475a #45475a
-client.urgent           #f38ba8 #1e1e2e #1e1e2e #f38ba8 #f38ba8
-client.placeholder      #313244 #1e1e2e #cdd6f4 #313244 #313244
 
 gaps inner 7px
 gaps outer 2px
